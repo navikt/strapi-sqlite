@@ -1,5 +1,7 @@
 FROM node:18-alpine
 
+USER root
+
 # Install build dependencies
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 
@@ -15,6 +17,7 @@ ENV PATH=/app/node_modules/.bin:$PATH
 COPY . .
 RUN yarn build
 
+RUN chown -R node:node /app
 EXPOSE 1337
 
 # Run the application as root
