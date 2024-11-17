@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "snarveier",
+  "info": {
+    "singularName": "snarvei",
+    "pluralName": "snarveier",
+    "displayName": "snarvei"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Navn": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    }
+  }
+}
