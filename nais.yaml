@@ -1,0 +1,50 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: strapi-sqlite
+  namespace: team-researchops
+  labels:
+    team: team-researchops
+spec:
+  image: {{ image }}
+  env:
+    - name: "DATABASE_CLIENT"
+      value: "sqlite"
+    - name: "DATABASE_SSL"
+      value: "false"
+    - name: "DATABASE_FILENAME"
+      value: "/tmp/data.db"
+    - name: "PORT"
+      value: "1337"
+    - name: "debug"
+      value: "true"
+    - name: "JWT_SECRET"
+      value: "tobemodified"
+    - name: "ADMIN_JWT_SECRET"
+      value: "tobemodified"
+    - name: "APP_KEYS"
+      value: "toBeModified1,toBeModified2"
+    - name: "TRANSFER_TOKEN_SALT"
+      value: "tobemodified"
+    - name: "API_TOKEN_SALT"
+      value: "tobemodified"
+  ingresses:
+    - "https://strapidemo.ansatt.nav.no"
+    - "https://strapidemo.intern.nav.no"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      memory: "512Mi"
+  liveness:
+    path: "/admin"
+    port: 1337
+  readiness:
+    path: "/admin"
+    port: 1337
+  replicas:
+    cpuThresholdPercentage: 50
+    max: 2
+    min: 1
+  port: 1337
