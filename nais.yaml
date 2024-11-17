@@ -1,6 +1,8 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
+  annotations:
+    nais.io/read-only-file-system: "false"
   name: strapi-sqlite
   namespace: team-researchops
   labels:
@@ -13,7 +15,7 @@ spec:
     - name: "DATABASE_SSL"
       value: "false"
     - name: "DATABASE_FILENAME"
-      value: "/tmp/data.db"
+      value: "/data/data.db"
     - name: "PORT"
       value: "1337"
     - name: "debug"
